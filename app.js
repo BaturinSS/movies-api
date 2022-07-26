@@ -14,7 +14,7 @@ const handlingErrors = require('./middlewares/handlingErrors');
 
 const {
   PORT = 3000,
-  DATA_BASE = 'mongodb://localhost:27017/mestodb',
+  DATA_BASE = 'mongodb://localhost:27017/bitfilmsdb',
 } = process.env;
 
 const app = express();
