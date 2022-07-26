@@ -5,8 +5,8 @@ npm-debug.log*
 
 # Dependency directory
 node_modules
-*.rar
-*.zip
+.rar
+.zip
 .env
 
 # Optional npm cache directory
