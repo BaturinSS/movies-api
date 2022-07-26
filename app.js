@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
+
 const { limiter } = require('./utils/limiterConfig');
 const cors = require('./middlewares/cors');
 const routes = require('./routes/index');
