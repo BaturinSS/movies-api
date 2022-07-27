@@ -1,10 +1,12 @@
 const router = require('express').Router();
+
 const { celebrate, Joi } = require('celebrate');
 
 const {
-  deleteMovie, getMovies,
-  createMovie, regExURL,
+  deleteMovie, createMovie, getMovies,
 } = require('../controllers/movies');
+
+const { regExURL } = require('../utils/constants');
 
 router
   .get('/', getMovies)
