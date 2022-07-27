@@ -1,5 +1,5 @@
 class AuthError extends Error {
-  constructor(message) {
+  constructor(message = 'Необходима авторизация') {
     super(message);
     this.statusCode = 401;
   }

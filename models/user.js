@@ -2,8 +2,6 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const validatorJS = require('validator');
 
-const { textErrorNoValidEmailPassword } = require('../utils/constants');
-
 const AuthError = require('../errors/AuthError');
 
 const userSchema = new mongoose.Schema({
@@ -31,12 +29,12 @@ userSchema.statics.findUserByCredentials = ({ email, password }) => this
   .findOne({ email }).select('+password')
   .then((user) => {
     if (!user) {
-      throw new AuthError(textErrorNoValidEmailPassword);
+      throw new AuthError();
     }
     return bcrypt.compare(password, user.password)
       .then((matched) => {
         if (!matched) {
-          throw new AuthError(textErrorNoValidEmailPassword);
+          throw new AuthError();
         }
         return user;
       });
