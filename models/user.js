@@ -25,19 +25,21 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.statics.findUserByCredentials = ({ email, password }) => this
-  .findOne({ email }).select('+password')
-  .then((user) => {
-    if (!user) {
-      throw new AuthError();
-    }
-    return bcrypt.compare(password, user.password)
-      .then((matched) => {
-        if (!matched) {
-          throw new AuthError();
-        }
-        return user;
-      });
-  });
+// eslint-disable-next-line func-names
+userSchema.statics.findUserByCredentials = function ({ email, password }) {
+  return this.findOne({ email }).select('+password')
+    .then((user) => {
+      if (!user) {
+        throw new AuthError();
+      }
+      return bcrypt.compare(password, user.password)
+        .then((matched) => {
+          if (!matched) {
+            throw new AuthError();
+          }
+          return user;
+        });
+    });
+};
 
 module.exports = mongoose.model('user', userSchema);

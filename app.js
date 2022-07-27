@@ -13,10 +13,7 @@ const routes = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const handlingErrors = require('./middlewares/handlingErrors');
 
-const {
-  PORT = 3000,
-  DATA_BASE = 'mongodb://localhost:27017/bitfilmsdb',
-} = process.env;
+const { PORT, DATA_BASE } = require('./utils/constants');
 
 const app = express();
 

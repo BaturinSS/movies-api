@@ -1,20 +1,9 @@
 const cors = require('cors');
 
-const { NODE_ENV, URL_CORS } = process.env;
-
-let allowlist = URL_CORS
-  ? URL_CORS.split(', ')
-  : [];
-
-const list = () => {
-  if (!NODE_ENV) {
-    allowlist = ['http://localhost:3106'];
-  }
-  return allowlist;
-};
+const { URL_CORS } = require('../utils/constants');
 
 const allowedCors = {
-  origin: list(),
+  origin: URL_CORS.split(', '),
   credentials: true,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 };
