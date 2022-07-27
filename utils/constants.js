@@ -1,6 +1,6 @@
 const {
   NODE_ENV,
-  PORT = 3000,
+  PORT = 3111,
   URL_CORS = 'http://localhost:3106',
   JWT_SECRET = 'keyword-for-token-generation-develop',
   DATA_BASE = 'mongodb://localhost:27017/bitfilmsdb',
