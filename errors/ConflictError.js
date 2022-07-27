@@ -1,5 +1,5 @@
 class ConflictError extends Error {
-  constructor(message) {
+  constructor(message = 'Такой пользователь уже существует!') {
     super(message);
     this.statusCode = 409;
   }
