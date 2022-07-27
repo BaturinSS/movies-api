@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken');
 
-const { keywordTokenDev } = require('../utils/constants');
+const { NODE_ENV, JWT_SECRET } = require('../utils/constants');
+
 const AuthError = require('../errors/AuthError');
 
 module.exports = (req, res, next) => {
-  const { NODE_ENV, JWT_SECRET = keywordTokenDev } = process.env;
   const checkedToken = (token) => {
     if (!token) {
       throw new AuthError();

@@ -2,7 +2,8 @@ const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 
 const {
-  deleteMovie, getMovies, createMovie,
+  deleteMovie, getMovies,
+  createMovie, regExURL,
 } = require('../controllers/movies');
 
 router
@@ -14,10 +15,9 @@ router
       duration: Joi.number().required(),
       year: Joi.string().required(),
       description: Joi.string().required(),
-      image: Joi.string().required().pattern(/(https?:\/\/)(w{3}\.)?(((\d{1,3}\.){3}\d{1,3})|((\w-?)+\.(ru|com)))(:\d{2,5})?((\/.+)+)?\/?#?/),
-      trailerLink: Joi.string().required().pattern(/(https?:\/\/)(w{3}\.)?(((\d{1,3}\.){3}\d{1,3})|((\w-?)+\.(ru|com)))(:\d{2,5})?((\/.+)+)?\/?#?/),
-      thumbnail: Joi.string().required().pattern(/(https?:\/\/)(w{3}\.)?(((\d{1,3}\.){3}\d{1,3})|((\w-?)+\.(ru|com)))(:\d{2,5})?((\/.+)+)?\/?#?/),
-      owner: Joi.string().required().hex().length(24),
+      image: Joi.string().required().regex(regExURL),
+      trailerLink: Joi.string().required().regex(regExURL),
+      thumbnail: Joi.string().required().regex(regExURL),
       movieId: Joi.string().required().hex(),
       nameRU: Joi.string().required(),
       nameEN: Joi.string().required(),
