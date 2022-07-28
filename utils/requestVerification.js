@@ -2,13 +2,6 @@ const { celebrate, Joi } = require('celebrate');
 
 const { regExURL } = require('./constants');
 
-const validationProfile = celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required(),
-  }),
-});
-
 const validationUser = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
@@ -47,7 +40,6 @@ const validationMovieId = celebrate({
 });
 
 module.exports = {
-  validationProfile,
   validationUser,
   validationLogin,
   validationMovie,
