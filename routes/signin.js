@@ -3,10 +3,10 @@ const router = require('express').Router();
 const { login } = require('../controllers/auth');
 
 const {
-  validationUser,
+  validationLogin,
 } = require('../utils/requestVerification');
 
 router
-  .post('/', validationUser, login);
+  .post('/', validationLogin, login);
 
 module.exports = router;
