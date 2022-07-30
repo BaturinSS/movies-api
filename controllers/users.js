@@ -2,6 +2,7 @@ const User = require('../models/user');
 
 const NotFoundError = require('../errors/NotFoundError');
 const ValidationError = require('../errors/ValidationError');
+const ConflictError = require('../errors/ConflictError');
 
 const {
   textErrorNoUser, textMessageOk,
@@ -16,13 +17,7 @@ module.exports.getUserInfo = (req, res, next) => {
       }
       res.send({ user, message: textMessageOk });
     })
-    .catch((err) => {
-      if (err.name === 'ValidationError') {
-        next(new ValidationError());
-      } else {
-        next(err);
-      }
-    });
+    .catch(next);
 };
 
 module.exports.updateUser = (req, res, next) => {
@@ -41,6 +36,8 @@ module.exports.updateUser = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new ValidationError());
+      } else if (err.codeName === 'DuplicateKey') {
+        next(new ConflictError());
       } else {
         next(err);
       }

@@ -10,7 +10,6 @@ module.exports = {
   NODE_ENV, JWT_SECRET, URL_CORS, PORT, DATA_BASE,
 };
 
-module.exports.regExURL = /(https?:\/\/)(w{3}\.)?(((\d{1,3}\.){3}\d{1,3})|((\w-?)+\.(ru|com)))(:\d{2,5})?((\/.+)+)?\/?#?/;
 module.exports.textErrorNoValidEmailPassword = 'Неправильные почта или пароль';
 module.exports.textErrorInternalServer = 'На сервере произошла ошибка';
 module.exports.textErrorNoUser = 'Такого пользователя нет';
