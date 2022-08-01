@@ -1,5 +1,5 @@
 class AccessError extends Error {
-  constructor(message) {
+  constructor(message = 'Можно удалять, только свои фильмы!') {
     super(message);
     this.statusCode = 403;
   }
