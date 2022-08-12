@@ -17,9 +17,14 @@ const {
 module.exports.login = (req, res, next) => {
   User
     .findUserByCredentials(req.body)
-    .then((user) => {
+    .then((data) => {
+      if (!data) {
+        throw new NotFoundError(textErrorNoUser);
+      }
+      const user = data.toJSON();
+      delete user.password;
       const token = jwt.sign(
-        { _id: user._id },
+        { _id: data._id },
         JWT_SECRET,
         { expiresIn: '7d' },
       );
@@ -31,9 +36,9 @@ module.exports.login = (req, res, next) => {
             secure: true,
             sameSite: 'none',
           })
-          .send({ message: textMessageOk });
+          .send({ message: textMessageOk, user });
       } else {
-        res.send({ token, message: textMessageOk });
+        res.send({ token, message: textMessageOk, user });
       }
     })
     .catch(next);
@@ -46,23 +51,35 @@ module.exports.createUser = (req, res, next) => {
       req.body.password = hash;
       User
         .create(req.body)
-        .then((user) => {
-          if (!user) {
-            throw new NotFoundError(textErrorNoUser);
+        .then((data) => {
+          const user = data.toJSON();
+          delete user.password;
+          const token = jwt.sign(
+            { _id: user._id },
+            JWT_SECRET,
+            { expiresIn: '7d' },
+          );
+          if (NODE_ENV === 'production') {
+            res
+              .cookie('jwt', token, {
+                maxAge: 3600000 * 24 * 7,
+                httpOnly: true,
+                secure: true,
+                sameSite: 'none',
+              })
+              .status(codCreated)
+              .send({ message: textMessageOk, user });
+          } else {
+            res
+              .status(codCreated)
+              .send({ token, message: textMessageOk, user });
           }
-          res
-            .status(codCreated)
-            .send({
-              name: user.name,
-              email: user.email,
-              _id: user._id,
-            });
         })
         .catch((err) => {
           if (err.name === 'ValidationError') {
-            next(new ValidationError());
+            next(new ValidationError('При регистрации пользователя произошла ошибка'));
           } else if (err.name === 'MongoServerError') {
-            next(new ConflictError());
+            next(new ConflictError('Пользователь с таким email уже существует.'));
           } else {
             next(err);
           }
