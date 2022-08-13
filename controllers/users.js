@@ -31,13 +31,16 @@ module.exports.updateUser = (req, res, next) => {
         throw new NotFoundError(textErrorNoUser);
       }
       res
-        .send(user);
+        .send({
+          user,
+          message: 'Профиль обновлен !!!',
+        });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new ValidationError());
+        next(new ValidationError('При обновлении профиля произошла ошибка.'));
       } else if (err.codeName === 'DuplicateKey') {
-        next(new ConflictError());
+        next(new ConflictError('Пользователь с таким email уже существует.'));
       } else {
         next(err);
       }
