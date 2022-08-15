@@ -38,7 +38,6 @@ module
           .send(film);
       })
       .catch((err) => {
-        console.log(err.code);
         if (err.name === 'ValidationError') {
           next(new ValidationError());
         } else if (err.code === 11000) {
