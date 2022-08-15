@@ -9,8 +9,8 @@ const ConflictError = require('../errors/ConflictError');
 const InternalServerError = require('../errors/InternalServerError');
 
 const {
-  codCreated, textErrorNoUser,
-  textMessageOk,
+  COD_CREATED, TEXT_ERROR_NO_USER,
+  TEXT_MESSAGE_OK,
   NODE_ENV, JWT_SECRET,
 } = require('../utils/constants');
 
@@ -19,7 +19,7 @@ module.exports.login = (req, res, next) => {
     .findUserByCredentials(req.body)
     .then((data) => {
       if (!data) {
-        throw new NotFoundError(textErrorNoUser);
+        throw new NotFoundError(TEXT_ERROR_NO_USER);
       }
       const user = data.toJSON();
       delete user.password;
@@ -36,9 +36,9 @@ module.exports.login = (req, res, next) => {
             secure: true,
             sameSite: 'none',
           })
-          .send({ message: textMessageOk, user });
+          .send({ message: TEXT_MESSAGE_OK, user });
       } else {
-        res.send({ token, message: textMessageOk, user });
+        res.send({ token, message: TEXT_MESSAGE_OK, user });
       }
     })
     .catch(next);
@@ -67,12 +67,12 @@ module.exports.createUser = (req, res, next) => {
                 secure: true,
                 sameSite: 'none',
               })
-              .status(codCreated)
-              .send({ message: textMessageOk, user });
+              .status(COD_CREATED)
+              .send({ message: TEXT_MESSAGE_OK, user });
           } else {
             res
-              .status(codCreated)
-              .send({ token, message: textMessageOk, user });
+              .status(COD_CREATED)
+              .send({ token, message: TEXT_MESSAGE_OK, user });
           }
         })
         .catch((err) => {

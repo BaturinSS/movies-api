@@ -22,7 +22,14 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  image: {
+  imageThumbnail: {
+    type: String,
+    required: true,
+    validate: {
+      validator: (value) => validatorJS.isURL(value),
+    },
+  },
+  imageSmall: {
     type: String,
     required: true,
     validate: {
@@ -36,13 +43,6 @@ const movieSchema = new mongoose.Schema({
       validator: (value) => validatorJS.isURL(value),
     },
   },
-  thumbnail: {
-    type: String,
-    required: true,
-    validate: {
-      validator: (value) => validatorJS.isURL(value),
-    },
-  },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
@@ -50,6 +50,7 @@ const movieSchema = new mongoose.Schema({
   },
   movieId: {
     type: Number,
+    unique: true,
     required: true,
   },
   nameRU: {

@@ -1,14 +1,14 @@
 const {
-  codInternalServerError, textErrorInternalServer,
+  COD_INTERNAL_SERVER_ERROR, TEXT_ERROR_INTERNEL_SERVER,
 } = require('../utils/constants');
 
 module.exports = ((err, req, res, next) => {
-  const { statusCode = codInternalServerError, message } = err;
+  const { statusCode = COD_INTERNAL_SERVER_ERROR, message } = err;
   res
     .status(statusCode)
     .send({
-      message: statusCode === codInternalServerError
-        ? textErrorInternalServer
+      message: statusCode === COD_INTERNAL_SERVER_ERROR
+        ? TEXT_ERROR_INTERNEL_SERVER
         : message,
     });
   next();

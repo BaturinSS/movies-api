@@ -5,7 +5,7 @@ const ValidationError = require('../errors/ValidationError');
 const ConflictError = require('../errors/ConflictError');
 
 const {
-  textErrorNoUser, textMessageOk,
+  TEXT_ERROR_NO_USER, TEXT_MESSAGE_OK,
 } = require('../utils/constants');
 
 module.exports.getUserInfo = (req, res, next) => {
@@ -13,9 +13,9 @@ module.exports.getUserInfo = (req, res, next) => {
     .findById(req.user._id)
     .then((user) => {
       if (!user) {
-        throw new NotFoundError(textErrorNoUser);
+        throw new NotFoundError(TEXT_ERROR_NO_USER);
       }
-      res.send({ user, message: textMessageOk });
+      res.send({ user, message: TEXT_MESSAGE_OK });
     })
     .catch(next);
 };
@@ -28,7 +28,7 @@ module.exports.updateUser = (req, res, next) => {
     })
     .then((user) => {
       if (!user) {
-        throw new NotFoundError(textErrorNoUser);
+        throw new NotFoundError(TEXT_ERROR_NO_USER);
       }
       res
         .send({

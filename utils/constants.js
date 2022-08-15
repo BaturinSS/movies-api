@@ -10,11 +10,15 @@ module.exports = {
   NODE_ENV, JWT_SECRET, URL_CORS, PORT, DATA_BASE,
 };
 
-module.exports.textErrorNoValidEmailPassword = 'Неправильные почта или пароль';
-module.exports.textErrorInternalServer = 'На сервере произошла ошибка';
-module.exports.textErrorNoUser = 'Такого пользователя нет';
-module.exports.textMessageDeleteFilm = 'Фильм удалён';
-module.exports.textErrorNoFilm = 'Такого фильма нет';
-module.exports.textMessageOk = 'Всё верно!';
-module.exports.codInternalServerError = 500;
-module.exports.codCreated = 201;
+module.exports.TEXT_ERROR_NO_VALID_EMAIL_PASSWORD = 'Неправильные почта или пароль';
+module.exports.TEXT_ERROR_INTERNEL_SERVER = 'На сервере произошла ошибка';
+module.exports.TEXT_ERROR_NO_USER = 'Такого пользователя нет';
+module.exports.TEXT_ERROR_NO_FILM = 'Такого фильма нет';
+module.exports.TEXT_ERROR_CONFLICT_DB = 'Такой фильм уже выбран !';
+
+module.exports.TEXT_MESSAGE_DELETE_FILM = 'Фильм удалён';
+module.exports.TEXT_MESSAGE_NO_FAVORITE_FILMS = 'Избранных фильмов нет';
+module.exports.TEXT_MESSAGE_OK = 'Всё верно!';
+
+module.exports.COD_INTERNAL_SERVER_ERROR = 500;
+module.exports.COD_CREATED = 201;
