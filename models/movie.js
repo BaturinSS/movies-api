@@ -43,11 +43,6 @@ const movieSchema = new mongoose.Schema({
       validator: (value) => validatorJS.isURL(value),
     },
   },
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
-    required: true,
-  },
   movieId: {
     type: Number,
     unique: true,
@@ -59,6 +54,22 @@ const movieSchema = new mongoose.Schema({
   },
   nameEN: {
     type: String,
+    required: true,
+  },
+  likes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user',
+      default: [],
+    },
+  ],
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
     required: true,
   },
 });

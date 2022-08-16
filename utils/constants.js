@@ -11,14 +11,15 @@ module.exports = {
 };
 
 module.exports.TEXT_ERROR_NO_VALID_EMAIL_PASSWORD = 'Неправильные почта или пароль';
-module.exports.TEXT_ERROR_INTERNEL_SERVER = 'На сервере произошла ошибка';
+module.exports.TEXT_ERROR_INTERNAL_SERVER = 'На сервере произошла ошибка';
 module.exports.TEXT_ERROR_NO_USER = 'Такого пользователя нет';
 module.exports.TEXT_ERROR_NO_FILM = 'Такого фильма нет';
 module.exports.TEXT_ERROR_CONFLICT_DB = 'Такой фильм уже выбран !';
 
-module.exports.TEXT_MESSAGE_DELETE_FILM = 'Фильм удалён';
+module.exports.TEXT_MESSAGE_DELETE_FILM = 'Фильм удалён из избранного.';
 module.exports.TEXT_MESSAGE_NO_FAVORITE_FILMS = 'Избранных фильмов нет';
 module.exports.TEXT_MESSAGE_OK = 'Всё верно!';
+module.exports.TEXT_MESSAGE_ADD_LIKE = 'Фильм добавлен в избранное.';
 
 module.exports.COD_INTERNAL_SERVER_ERROR = 500;
 module.exports.COD_CREATED = 201;
