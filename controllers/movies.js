@@ -55,13 +55,13 @@ module.exports.deleteMovie = (req, res, next) => {
       { $pull: { likes: req.user._id } },
       { new: true },
     )
-    .then((newFilm) => {
-      if (!newFilm) {
+    .then((deletedFilm) => {
+      if (!deletedFilm) {
         throw new NotFoundError(TEXT_ERROR_NO_FILM);
-      } else if (!newFilm.likes.map((el) => el.toHexString() !== req.user._id)) {
+      } else if (!deletedFilm.likes.map((el) => el.toHexString() !== req.user._id)) {
         throw new AccessError();
       }
-      res.send({ message: TEXT_MESSAGE_DELETE_FILM, newFilm });
+      res.send({ message: TEXT_MESSAGE_DELETE_FILM, deletedFilm });
     })
     .catch(next);
 };

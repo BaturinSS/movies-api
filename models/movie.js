@@ -67,11 +67,6 @@ const movieSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
-    required: true,
-  },
 });
 
 module.exports = mongoose.model('movie', movieSchema);
