@@ -13,7 +13,7 @@ const routes = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const handlingErrors = require('./middlewares/handlingErrors');
 
-const { PORT, DATA_BASE } = require('./utils/constants');
+const { PORT, DATA_BASE,NODE_ENV } = require('./utils/constants');
 
 const app = express();
 
@@ -23,7 +23,7 @@ app.options('*', cors);
 
 app.use(requestLogger);
 app.use(cors);
-app.use(limiter);
+if (NODE_ENV === 'production') app.use(limiter);
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
