@@ -39,3 +39,4 @@
 ### [Ссылка на backend 👈👈👈👈](https://api.movies.novo52.ru)   
 ### [Ссылка на frontend 👈👈👈👈](https://movies.novo52.ru)    
 ### [GitHub на frontend 👈👈👈👈](https://github.com/BaturinSS/movies-frontend)    
+### [Ссылка на Pull Request 👈👈👈👈](https://github.com/BaturinSS/movies-api/pull/1)
